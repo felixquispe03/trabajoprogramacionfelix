@@ -28,6 +28,11 @@ int main() {
         double x = (e * d - b * f) / determinante;
         double y = (a * f - e * c) / determinante;
 
+        // Modificar el resultado de "x" y "y"
+        if (x < 10) {
+            y += 4;
+        }
+
         // Mostrar la solución
         std::cout << "La solución del sistema es:" << std::endl;
         std::cout << "x = " << x << std::endl;
@@ -36,4 +41,3 @@ int main() {
 
     return 0;
 }
-// MODIFICAR EL EJERCICIO PARA EL CASO QUE SI EL RESULTADO DE "X" ES MENOR QUE 10, EL RESULTADO DE "Y", DEBERA SER INCREMENTADO EN 4
