@@ -18,32 +18,55 @@ int main() {
     cout << "Ingrese la cantidad de entradas: ";
     cin >> num_entradas;
 
-    // Buscar el índice de la ubicación elegida
+    // Buscar el índice de la ubicación elegida utilizando switch
     int indice = -1;
-    for (int i = 0; i < 4; i++) {
-        if (ubicaciones[i] == ubicacion) {
-            indice = i;
+    switch (ubicacion[0]) {
+        case 'g':
+            indice = 0;
             break;
-        }
+        case 'p':
+            if (ubicacion == "preferencia") {
+                indice = 1;
+            } else {
+                indice = 2;
+            }
+            break;
+        case 'v':
+            indice = 3;
+            break;
+        default:
+            // Si la ubicación no es válida, imprimir un mensaje de error
+            cout << "Ubicacion no valida" << endl;
+            return 0;
     }
 
     // Calcular el costo total basado en la ubicación elegida y el número de entradas
-    double costo_total;
-    if (indice != -1) {
-        costo_total = num_entradas * precios[indice];
-        if (ubicacion == "vip") {
-            string bebida;
-            cout << "Elija su bebida (gaseosa, cerveza o agua): ";
-            cin >> bebida;
-            if (bebida == "gaseosa" || bebida == "cerveza") {
+    double costo_total = num_entradas * precios[indice];
+    if (ubicacion == "vip") {
+        string bebida;
+        cout << "Elija su bebida (gaseosa, cerveza o agua): ";
+        cin >> bebida;
+
+        switch (bebida[0]) {
+            case 'g':
                 costo_total += 10.00;
-            } else if (bebida == "agua") {
+                break;
+            case 'c':
+                costo_total += 10.00;
+                break;
+            case 'a':
                 costo_total += 5.00;
-            }
+                break;
+            default:
+                // Si la bebida no es válida, imprimir un mensaje de error
+                cout << "Bebida no valida" << endl;
+                return 0;
         }
-    } else {
-        // Si la ubicación no es válida, imprimir un mensaje de error
-        cout << "Ubicacion no valida" << endl;
+    }
+
+    // Verificar si la suma de las entradas supera los 400 y enviar un mensaje de "Usuario no preferente"
+    if (costo_total < 400) {
+        cout << "Usuario no preferente" << endl;
         return 0;
     }
 
@@ -51,5 +74,4 @@ int main() {
     cout << "Total a pagar: $" << costo_total << endl;
 
     return 0;
-} // EL EJERCIO DEBE SER REALIZADO CON SWITCH
-// MODIFIQUE EL EJERCICIO PARA EL CASO QUE SI LA SUMA DE LAS ENTRADAS NO SUPERA LOS 400 SE ENVIARA UN MENSAJE DE "USUARIO NO PREFERENTE"
+}
