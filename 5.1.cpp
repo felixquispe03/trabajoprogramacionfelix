@@ -1,3 +1,5 @@
+#include <iostream>
+
 int main() {
     int n;
     std::cout << "Ingresa un número positivo: ";
